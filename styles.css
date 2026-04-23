@@ -1,0 +1,675 @@
+:root {
+  color-scheme: dark;
+  --bg: #06101c;
+  --bg-soft: rgba(10, 21, 37, 0.88);
+  --panel: rgba(13, 24, 41, 0.9);
+  --panel-strong: #11233b;
+  --text: #f4f7fb;
+  --muted: #9cb0c8;
+  --line: rgba(255, 255, 255, 0.08);
+  --accent: #55f2c5;
+  --accent-strong: #00b0ff;
+  --shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+  --hero-overlay: linear-gradient(135deg, rgba(0, 0, 0, 0.05), rgba(8, 17, 30, 0.72));
+  --radius-xl: 28px;
+  --radius-lg: 24px;
+  --radius-md: 18px;
+}
+
+html[data-theme="light"] {
+  color-scheme: light;
+  --bg: #f4f7fb;
+  --bg-soft: rgba(255, 255, 255, 0.9);
+  --panel: rgba(255, 255, 255, 0.95);
+  --panel-strong: #ffffff;
+  --text: #132238;
+  --muted: #627287;
+  --line: rgba(19, 34, 56, 0.1);
+  --accent: #1377ff;
+  --accent-strong: #ff5a7a;
+  --shadow: 0 22px 60px rgba(39, 71, 109, 0.18);
+  --hero-overlay: linear-gradient(135deg, rgba(255, 255, 255, 0.06), rgba(19, 34, 56, 0.4));
+}
+
+html[data-theme="sunset"] {
+  color-scheme: dark;
+  --bg: #1a0c12;
+  --bg-soft: rgba(43, 16, 28, 0.86);
+  --panel: rgba(52, 18, 36, 0.92);
+  --panel-strong: #612544;
+  --text: #fff2ec;
+  --muted: #efb6b0;
+  --line: rgba(255, 228, 215, 0.12);
+  --accent: #ffd166;
+  --accent-strong: #ff5c8a;
+  --shadow: 0 30px 80px rgba(0, 0, 0, 0.42);
+  --hero-overlay: linear-gradient(135deg, rgba(255, 209, 102, 0.08), rgba(26, 12, 18, 0.7));
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Manrope", sans-serif;
+  background:
+    radial-gradient(circle at top left, rgba(85, 242, 197, 0.16), transparent 30%),
+    radial-gradient(circle at top right, rgba(0, 176, 255, 0.14), transparent 25%),
+    linear-gradient(180deg, var(--bg), #040912 60%, #071726 120%);
+  color: var(--text);
+}
+
+.page-shell {
+  width: min(1240px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 28px 0 48px;
+}
+
+.topbar,
+.tabs,
+.hero-card,
+.chart-card,
+.game-card,
+.filter-card,
+.results-card,
+.friends-card,
+.chat-card,
+.account-card,
+.profile-card,
+.settings-card {
+  backdrop-filter: blur(18px);
+  background: var(--panel);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 24px;
+  border-radius: var(--radius-xl);
+}
+
+.topbar h1,
+.hero-copy h2,
+.section-head h3,
+.game-card h4,
+.results-head h4,
+.chat-header h4,
+.account-card h4,
+.profile-card h4,
+.settings-card h4 {
+  margin: 0;
+  font-family: "Space Grotesk", sans-serif;
+}
+
+.eyebrow {
+  margin: 0 0 6px;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+
+.topbar h1 {
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  letter-spacing: -0.04em;
+}
+
+.topbar-actions,
+.status-pill,
+.hero-actions,
+.friends-head,
+.results-head,
+.chat-form,
+.theme-options {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.status-pill {
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+}
+
+.status-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 12px var(--accent);
+}
+
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 10px;
+  border-radius: calc(var(--radius-lg) - 2px);
+  margin: 18px 0 26px;
+}
+
+.tab-link,
+.primary-button,
+.secondary-button,
+.ghost-button,
+.theme-button {
+  border: 0;
+  border-radius: 16px;
+  font: inherit;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.tab-link {
+  padding: 14px 18px;
+  color: var(--muted);
+  background: transparent;
+  font-weight: 700;
+  min-width: 120px;
+}
+
+.tab-link.active,
+.tab-link:hover {
+  color: var(--text);
+  background: var(--bg-soft);
+}
+
+.primary-button,
+.secondary-button,
+.ghost-button,
+.theme-button {
+  padding: 12px 18px;
+  font-weight: 800;
+}
+
+.primary-button {
+  background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+  color: #04101e;
+}
+
+.secondary-button {
+  background: var(--bg-soft);
+  color: var(--text);
+  border: 1px solid var(--line);
+}
+
+.ghost-button,
+.theme-button {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--line);
+}
+
+.primary-button:hover,
+.secondary-button:hover,
+.ghost-button:hover,
+.theme-button:hover,
+.tab-link:hover {
+  transform: translateY(-1px);
+}
+
+.tab-panel {
+  display: none;
+}
+
+.tab-panel.active {
+  display: block;
+}
+
+.hero-card {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 24px;
+  border-radius: var(--radius-xl);
+  padding: 24px;
+}
+
+.hero-card-refined {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-card-refined::before {
+  content: "";
+  position: absolute;
+  inset: auto auto -120px -120px;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(85, 242, 197, 0.18), transparent 65%);
+  pointer-events: none;
+}
+
+.hero-copy {
+  padding: 14px 8px;
+}
+
+.hero-copy h2 {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  line-height: 1.02;
+  margin-bottom: 16px;
+}
+
+.hero-copy p {
+  color: var(--muted);
+  font-size: 1.05rem;
+  max-width: 56ch;
+}
+
+.hero-visual {
+  position: relative;
+  min-height: 360px;
+}
+
+.hero-visual img,
+.game-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.hero-visual img {
+  border-radius: var(--radius-lg);
+  min-height: 100%;
+}
+
+.hero-visual::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--hero-overlay);
+  border-radius: var(--radius-lg);
+}
+
+.hero-badge {
+  position: absolute;
+  left: 18px;
+  bottom: 18px;
+  z-index: 1;
+  padding: 16px 18px;
+  border-radius: 20px;
+  background: rgba(8, 14, 28, 0.66);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.hero-badge strong,
+.hero-badge span {
+  display: block;
+}
+
+.hero-badge span,
+.muted,
+.game-card-copy p,
+.account-card label,
+.profile-meta,
+.rank-card li,
+.friend-meta,
+.chat-subtitle {
+  color: var(--muted);
+}
+
+.section-block {
+  margin-top: 26px;
+}
+
+.source-note {
+  margin: 10px 4px 0;
+  font-size: 0.92rem;
+}
+
+.section-block.compact {
+  margin-top: 20px;
+}
+
+.section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+
+.chart-card,
+.filter-card,
+.results-card,
+.friends-card,
+.chat-card,
+.account-card,
+.profile-card,
+.settings-card {
+  border-radius: var(--radius-lg);
+  padding: 20px;
+}
+
+.chart-card {
+  padding: 18px;
+}
+
+.chart-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 18px;
+  color: var(--muted);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.chart-grid {
+  display: grid;
+  gap: 14px;
+}
+
+.chart-row {
+  display: grid;
+  grid-template-columns: 220px 1fr 110px;
+  gap: 14px;
+  align-items: center;
+}
+
+.chart-label strong,
+.chart-label span,
+.chart-value {
+  display: block;
+}
+
+.chart-label span {
+  color: var(--muted);
+  margin-top: 4px;
+  font-size: 0.9rem;
+}
+
+.chart-bar-track {
+  height: 16px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+  border: 1px solid var(--line);
+}
+
+.chart-bar-fill {
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--accent), var(--accent-strong));
+  box-shadow: 0 0 16px rgba(85, 242, 197, 0.22);
+}
+
+.chart-value {
+  text-align: right;
+  font-weight: 800;
+}
+
+.game-grid,
+.account-layout,
+.settings-grid {
+  display: grid;
+  gap: 18px;
+}
+
+.game-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.game-card {
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  position: relative;
+}
+
+.game-card img {
+  height: 220px;
+}
+
+.game-card-copy {
+  padding: 18px;
+}
+
+.home-highlights .game-card-copy {
+  padding-top: 16px;
+}
+
+.game-card-copy span,
+.teammate-rank,
+.friend-status {
+  display: inline-flex;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: var(--bg-soft);
+  color: var(--accent);
+  font-size: 0.8rem;
+  font-weight: 800;
+}
+
+.finder-layout,
+.chat-layout {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 18px;
+}
+
+.filter-card,
+.account-card {
+  display: grid;
+  gap: 14px;
+  align-content: start;
+}
+
+label {
+  display: grid;
+  gap: 8px;
+  font-weight: 700;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  background: var(--bg-soft);
+  color: var(--text);
+  font: inherit;
+}
+
+.teammate-list,
+.friend-list,
+.chat-messages,
+.rank-columns {
+  display: grid;
+  gap: 14px;
+}
+
+.teammate-card,
+.friend-item,
+.message {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--bg-soft);
+}
+
+.teammate-card {
+  display: grid;
+  grid-template-columns: 72px 1fr auto;
+  gap: 16px;
+  align-items: center;
+  padding: 14px;
+}
+
+.avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 22px;
+  object-fit: cover;
+}
+
+.teammate-meta h4,
+.teammate-meta p,
+.message p,
+.friend-item h5,
+.friend-item p {
+  margin: 0;
+}
+
+.teammate-meta p {
+  color: var(--muted);
+  margin-top: 6px;
+}
+
+.profile-meta {
+  margin: 12px 0 0;
+  padding-left: 18px;
+}
+
+.friends-card,
+.chat-card {
+  min-height: 540px;
+}
+
+.friend-item {
+  padding: 14px;
+  cursor: pointer;
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.friend-item.active {
+  outline: 2px solid var(--accent);
+}
+
+.friend-item:hover {
+  transform: translateY(-1px);
+  border-color: rgba(85, 242, 197, 0.35);
+}
+
+.friend-item h5 {
+  font-size: 1rem;
+  margin-bottom: 6px;
+}
+
+.friend-status {
+  margin-top: 8px;
+}
+
+.chat-card {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
+.chat-messages {
+  align-content: start;
+  overflow-y: auto;
+  max-height: 380px;
+  padding-right: 4px;
+}
+
+.message {
+  padding: 14px 16px;
+  max-width: 78%;
+}
+
+.message.mine {
+  margin-left: auto;
+  background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+  color: #07111f;
+}
+
+.message small {
+  display: block;
+  margin-top: 6px;
+  opacity: 0.75;
+}
+
+.chat-form input {
+  flex: 1;
+}
+
+.account-layout {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.profile-card {
+  display: grid;
+  align-content: start;
+}
+
+.theme-options {
+  flex-wrap: wrap;
+}
+
+.settings-card p {
+  line-height: 1.6;
+}
+
+.toast {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  padding: 12px 16px;
+  border-radius: 16px;
+  background: var(--panel-strong);
+  color: var(--text);
+  border: 1px solid var(--line);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(20px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 980px) {
+  .hero-card,
+  .finder-layout,
+  .chat-layout,
+  .account-layout,
+  .settings-grid,
+  .game-grid,
+  .rank-columns {
+    grid-template-columns: 1fr;
+  }
+
+  .section-head,
+  .topbar {
+    align-items: start;
+    flex-direction: column;
+  }
+
+  .chart-row {
+    grid-template-columns: 1fr;
+  }
+
+  .chart-value {
+    text-align: left;
+  }
+}
+
+@media (max-width: 640px) {
+  .page-shell {
+    width: min(100% - 20px, 1240px);
+  }
+
+  .hero-copy h2 {
+    font-size: 2rem;
+  }
+
+  .teammate-card {
+    grid-template-columns: 1fr;
+  }
+
+  .chat-form {
+    flex-direction: column;
+  }
+}
